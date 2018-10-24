@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
+  </head>
+  <body>
+  <h1>Scraped</h1>
+    <h2><%= base %><%= url%></h2>
+    <div id ="main"></div>
+    <% items.forEach((item) => { %>
+      <a href='<%= item.link %>' target="_blank"><%= item.title %></a>
+
+    <p>
+      <strong>Price: R</strong>
+      <%= item.price%>
+    </p>
+    <p>
+      <strong>Location: </strong>
+      <%= item.location%>
+    </p>
+    <p>
+      <strong>Description: </strong>
+      <%= item.description%>
+    </p>
+    <br>
+    <br>
+    <% }); %>
+  <a href="/scrape/page<"
+  </body>
+
+</html>

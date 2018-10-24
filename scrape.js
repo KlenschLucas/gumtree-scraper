@@ -18,11 +18,13 @@ const checkLinks = function (base, url) {
   request((base + url), (err, response, html) => {
     let $ = cheerio.load(html);
     let array = $("div.view ul li").toArray();
-    let i = 0;
+    let i = 1;
+      console.log(array.length)
     array.map((itemData) => {
 
+            i++;
       if (itemData.children[1] && itemData.children[1].children[3] && itemData.children[1].children[3].children[1]) {
-        if (!i) {
+        if (i) {
           let item = itemData.children[1].children[3].children;
 
           // skip if price is not there
@@ -35,17 +37,18 @@ const checkLinks = function (base, url) {
                 'R ', '').replace(',', '');
             itm.creation_date = item[7].children[3].children[3].children[0].data;
             [itm.category, itm.location] = (item[9].children[1].children[0].data.replace('Published in: ', '').split(' , '));
-            // i++;
             // let temp = itemData.children[1].children[1].children[1].children[1].attribs.src;
             // temp.shift();
             // itm.thumb = temp;
-            // console.log(itm.thumb);
-            console.dir(itm);
+            list.push(itm);
           }
 
         }
 
       }
+            if (i === array.length) {
+                console.dir(list);
+            }
     });
   });
 };
